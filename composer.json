@@ -1,0 +1,13 @@
+{
+    "name": "brian/metrics",
+    "require": {
+        "slim/slim": "^3.12",
+        "jimdo/prometheus_client_php": "^0.9.1"
+    },
+    "authors": [
+        {
+            "name": "Brian Greenhill",
+            "email": "bg@hellofresh.com"
+        }
+    ]
+}

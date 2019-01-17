@@ -1,0 +1,36 @@
+version: "2"
+
+services:
+  metrics:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8010:80"
+    volumes:
+      - "./:/var/www/html"
+  prometheus:
+    image: prom/prometheus
+    ports: 
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./docker/grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./docker/grafana/config.monitoring
+    restart: always
+  redis:
+      image: redis
+      ports:
+        - 63790:6379
+
+volumes:
+  grafana_data:

@@ -1,0 +1,6 @@
+FROM quay.io/hellofresh/php:7.3-fpm
+
+RUN pecl install redis && \
+    docker-php-ext-enable redis
+
+CMD ["php", "-S", "0.0.0.0:80"]
