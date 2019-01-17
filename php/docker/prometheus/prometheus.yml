@@ -26,4 +26,4 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-    - targets: ['metrics:80']
+    - targets: ['observable-web:80', 'observable-web:9145']

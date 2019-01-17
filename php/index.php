@@ -10,6 +10,7 @@ $config = require_once __DIR__ . '/config.php';
 $app = new \Slim\App(['settings' => $config]);
 
 $app->get('/metrics', function (Request $request, Response $response, array $args) {
+    sleep(1);
     Redis::setDefaultOptions($this->settings['redis']);
 
     $registry = \Prometheus\CollectorRegistry::getDefault();
